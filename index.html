@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Terceira Via Para Comprar Imóvel — Referência Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --preto: #060d07;
+    --verde: #0a1e0f;
+    --verde2: #0f2918;
+    --verde3: #163521;
+    --ouro: #c9a84c;
+    --ouro-claro: #e8c96e;
+    --branco: #f3f0e8;
+    --cinza: #7a7670;
+    --vermelho: rgba(255,80,80,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--preto); color: var(--branco); }
+
+  /* NAV */
+  nav { padding: 22px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 700; color: var(--branco); letter-spacing: -0.3px; }
+  .nav-logo span { color: var(--ouro); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-pill { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--ouro-claro); font-size: 12px; padding: 6px 14px; border-radius: 20px; }
+  .btn-nav { background: var(--ouro); color: var(--preto); font-size: 13px; font-weight: 700; padding: 10px 20px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+  /* PROBLEM SECTION */
+  .problem { padding: 80px 60px 60px; text-align: center; }
+  .p-eyebrow { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--ouro); margin-bottom: 40px; }
+  .p-question { font-family: 'Unbounded', sans-serif; font-size: clamp(28px, 4vw, 52px); font-weight: 900; color: var(--branco); line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+  .p-question .bad { color: rgba(255,100,100,0.7); text-decoration: line-through; text-decoration-color: rgba(255,100,100,0.5); }
+  .p-desc { font-size: 18px; font-weight: 300; color: rgba(243,240,232,0.6); max-width: 680px; margin: 0 auto 60px; line-height: 1.7; }
+  .p-desc strong { color: var(--branco); font-weight: 500; }
+
+  /* THE TWO BAD OPTIONS */
+  .bad-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 860px; margin: 0 auto 24px; }
+  .bad-option { background: rgba(255,80,80,0.04); border: 1px solid rgba(255,80,80,0.2); padding: 32px; position: relative; }
+  .bad-option::before { content: 'Problema'; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,100,100,0.6); font-weight: 600; display: block; margin-bottom: 12px; }
+  .bad-option h3 { font-family: 'Unbounded', sans-serif; font-size: 18px; font-weight: 700; color: rgba(243,240,232,0.7); margin-bottom: 16px; text-decoration: line-through; text-decoration-color: rgba(255,100,100,0.4); }
+  .bad-option p { font-size: 14px; color: var(--cinza); line-height: 1.65; }
+  .bad-option ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .bad-option ul li { font-size: 13px; color: rgba(255,100,100,0.65); display: flex; gap: 8px; align-items: flex-start; }
+  .bad-option ul li::before { content: '×'; font-weight: 700; flex-shrink: 0; }
+  .vs-row { display: flex; align-items: center; justify-content: center; margin: -10px 0; position: relative; z-index: 2; }
+  .vs-badge { width: 44px; height: 44px; background: var(--preto); border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--ouro); }
+
+  /* THIRD WAY */
+  .third-way { padding: 60px; text-align: center; }
+  .tw-tag { display: inline-flex; align-items: center; gap: 10px; font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--ouro); margin-bottom: 28px; }
+  .tw-tag::before, .tw-tag::after { content: '—'; opacity: 0.5; }
+  .tw-title { font-family: 'Unbounded', sans-serif; font-size: clamp(36px, 5vw, 68px); font-weight: 900; color: var(--branco); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
+  .tw-title span { color: var(--ouro-claro); }
+  .tw-sub { font-size: 20px; font-weight: 300; color: rgba(243,240,232,0.65); max-width: 600px; margin: 0 auto 52px; line-height: 1.6; }
+  .btn-tw { display: inline-block; background: var(--ouro); color: var(--preto); font-size: 17px; font-weight: 700; padding: 22px 56px; text-decoration: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
+  .btn-tw:hover { background: var(--ouro-claro); }
+
+  /* WHAT MAKES IT DIFFERENT */
+  .diff { background: var(--verde2); padding: 100px 60px; }
+  .diff-inner { max-width: 1000px; margin: 0 auto; }
+  .section-e { font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; color: var(--ouro); margin-bottom: 24px; }
+  h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(24px, 3.5vw, 44px); font-weight: 900; color: var(--branco); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 60px; }
+  .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(201,168,76,0.06); }
+  .diff-item { background: var(--verde2); padding: 36px 28px; }
+  .diff-icon { font-size: 28px; margin-bottom: 20px; }
+  .diff-item h3 { font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700; color: var(--branco); margin-bottom: 12px; line-height: 1.3; }
+  .diff-item p { font-size: 14px; color: var(--cinza); line-height: 1.7; }
+
+  /* HOW RFC IS DIFFERENT */
+  .rfc-diff { padding: 100px 60px; }
+  .rfc-diff-inner { max-width: 900px; margin: 0 auto; }
+  .rfc-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 60px; }
+  .rfc-col { padding: 40px 36px; }
+  .rfc-col.bad { background: rgba(255,255,255,0.02); }
+  .rfc-col.good { background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); }
+  .rfc-col-title { font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .rfc-col.bad .rfc-col-title { color: rgba(243,240,232,0.4); }
+  .rfc-col.good .rfc-col-title { color: var(--ouro); border-bottom-color: rgba(201,168,76,0.2); }
+  .rfc-item { margin-bottom: 20px; }
+  .rfc-item-label { font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .rfc-col.bad .rfc-item-label { color: rgba(243,240,232,0.4); }
+  .rfc-col.good .rfc-item-label { color: var(--ouro-claro); }
+  .rfc-item p { font-size: 13px; color: var(--cinza); line-height: 1.6; }
+  .rfc-col.good .rfc-item p { color: rgba(243,240,232,0.7); }
+
+  /* FORM */
+  .form-s { background: var(--verde); padding: 100px 60px; }
+  .form-s-inner { max-width: 580px; margin: 0 auto; text-align: center; }
+  .form-s-inner h2 { margin-bottom: 16px; font-size: clamp(28px, 4vw, 48px); }
+  .form-s-inner p { font-size: 17px; color: rgba(243,240,232,0.6); line-height: 1.65; margin-bottom: 48px; }
+  .form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+  .fi { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); color: var(--branco); font-size: 15px; padding: 15px 18px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; width: 100%; }
+  .fi:focus { border-color: var(--ouro); }
+  .fi option { background: var(--verde); }
+  .btn-f { background: var(--ouro); color: var(--preto); font-size: 16px; font-weight: 700; padding: 20px; width: 100%; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
+  .btn-f:hover { background: var(--ouro-claro); }
+  .form-disc { font-size: 12px; color: var(--cinza); text-align: center; margin-top: 12px; }
+
+  .iti {
+    width: 100%;
+  }
+
+  .iti input.fi,
+  .iti input[type="tel"] {
+    width: 100%;
+    height: 56px;
+    padding-left: 90px !important;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--branco);
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .iti input.fi:focus,
+  .iti input[type="tel"]:focus {
+    border-color: var(--ouro);
+  }
+
+  .iti__country-container {
+    left: 0;
+  }
+
+  .iti--separate-dial-code .iti__selected-flag {
+    background: transparent !important;
+    border-right: 1px solid rgba(201,168,76,0.12);
+    padding: 0 12px 0 14px;
+  }
+
+  .iti__selected-flag:hover,
+  .iti__selected-flag:focus,
+  .iti__selected-flag[aria-expanded="true"] {
+    background: rgba(255,255,255,0.03) !important;
+  }
+
+  .iti__selected-dial-code {
+    color: var(--branco);
+    font-size: 15px;
+    margin-left: 8px;
+  }
+
+  .iti__arrow {
+    border-top-color: var(--ouro);
+  }
+
+  .iti__country-list {
+    background: #0f2918 !important;
+    border: 1px solid rgba(201,168,76,0.18) !important;
+    color: var(--branco) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    width: 100% !important;
+    max-width: 100%;
+    margin-top: 8px;
+  }
+
+  .iti__country {
+    color: var(--branco) !important;
+    padding: 10px 12px;
+  }
+
+  .iti__country:hover,
+  .iti__country.iti__highlight {
+    background: rgba(201,168,76,0.12) !important;
+  }
+
+  .iti__dial-code {
+    color: rgba(243,240,232,0.65) !important;
+  }
+
+  .iti__search-input {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(201,168,76,0.15) !important;
+    color: var(--branco) !important;
+    outline: none;
+  }
+
+  .iti__search-input::placeholder {
+    color: rgba(243,240,232,0.45);
+  }
+
+  .iti__divider {
+    border-bottom-color: rgba(201,168,76,0.12) !important;
+  }
+
+  footer { border-top: 1px solid rgba(255,255,255,0.04); padding: 28px 60px; display: flex; justify-content: space-between; font-size: 12px; color: var(--cinza); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-right .nav-pill { display: none; }
+    .problem { padding: 60px 24px; }
+    .bad-options { grid-template-columns: 1fr; }
+    .third-way { padding: 60px 24px; }
+    .diff { padding: 60px 24px; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .rfc-diff { padding: 60px 24px; }
+    .rfc-compare { grid-template-columns: 1fr; }
+    .form-s { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 10px; padding: 24px; }
+  }
+</style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    // Pixel 1
+    fbq('init', '1761905857999115');
+
+    // Pixel 2
+    fbq('init', '837741104784878');
+
+    // PageView
+    fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1761905857999115&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=837741104784878&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"/>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-logo">Referência <span>Capital</span></div>
+  <div class="nav-right">
+    <span class="nav-pill">Brasileiros no Exterior</span>
+    <button class="btn-nav" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Falar com especialista</button>
+  </div>
+</nav>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="p-eyebrow">Uma pergunta importante</div>
+  <h2 class="p-question">Qual é a melhor forma<br>de comprar um imóvel?</h2>
+  <p class="p-desc">Você está <strong>esperando juntar o valor total</strong> para comprar à vista? Ou está pensando em entrar num <strong>financiamento bancário</strong>? Há uma terceira opção que a maioria não conhece.</p>
+
+  <div class="bad-options">
+    <div class="bad-option">
+      <h3>Comprar à vista</h3>
+      <p>Parece a opção mais segura. Na prática, é a mais lenta e ineficiente.</p>
+      <ul>
+        <li>Enquanto você junta, o imóvel valoriza e se afasta</li>
+        <li>Leva de 10 a 15 anos para acumular o valor total</li>
+        <li>Capital parado, sem trabalhar por você</li>
+        <li>Você perde poder de compra para a inflação</li>
+      </ul>
+    </div>
+    <div class="bad-option">
+      <h3>Financiamento bancário</h3>
+      <p>Acesso rápido ao imóvel, mas o preço que você paga é muito maior.</p>
+      <ul>
+        <li>Entrada de 30% obrigatória</li>
+        <li>Juros de 12-14% ao ano por 30 anos</li>
+        <li>Você paga o equivalente a 2-3 imóveis no total</li>
+        <li>Exige comprovação de renda no Brasil</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THIRD WAY -->
+<section class="third-way">
+  <div class="tw-tag">A solução</div>
+  <h2 class="tw-title">A terceira via:<br><span>o consórcio inteligente</span></h2>
+  <p class="tw-sub">Sem entrada. Sem juros. Sem comprovação de renda no Brasil. E com uma estratégia de alavancagem que faz o aluguel pagar a parcela.</p>
+  <button class="btn-tw" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Conhecer a terceira via →</button>
+</section>
+
+<!-- WHAT MAKES IT DIFFERENT -->
+<section class="diff">
+  <div class="diff-inner">
+    <div class="section-e">Por que funciona</div>
+    <h2>O que torna o consórcio<br>a escolha mais inteligente</h2>
+    <div class="diff-grid">
+      <div class="diff-item">
+        <div class="diff-icon">🎯</div>
+        <h3>Sem juros — taxa mínima de administração</h3>
+        <p>Ao contrário do financiamento, o consórcio não cobra juros. Você paga apenas uma taxa administrativa pequena sobre o total.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🔓</div>
+        <h3>Sem entrada — acesso imediato ao crédito</h3>
+        <p>Não precisa ter 30% guardado. Com o consórcio, o crédito integral fica disponível quando você é contemplado.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">💱</div>
+        <h3>Câmbio como alavanca para quem mora fora</h3>
+        <p>Com dólar ou euro, suas parcelas em reais representam muito pouco em moeda estrangeira. Você compra poder de compra.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🏠</div>
+        <h3>Imóvel que se paga sozinho</h3>
+        <p>O aluguel do imóvel, bem escolhido, cobre 60-80% da parcela mensal. O imóvel trabalha por você.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">📋</div>
+        <h3>Sem burocracia fiscal no Brasil</h3>
+        <p>Não precisa declarar IR no Brasil, ter CPF ativo ou vínculo empregatício local. Documentação internacional é aceita.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">🔄</div>
+        <h3>Múltiplas cartas — patrimônio escalável</h3>
+        <p>É possível adquirir mais de uma carta de consórcio simultaneamente, acelerando a construção patrimonial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RFC VS BANCO -->
+<section class="rfc-diff">
+  <div class="rfc-diff-inner">
+    <div class="section-e">Não é qualquer consórcio</div>
+    <h2>O consórcio de banco<br>vs. o consórcio da Referência</h2>
+    <div class="rfc-compare">
+      <div class="rfc-col bad">
+        <div class="rfc-col-title">Consórcio do banco tradicional</div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Contemplação</div>
+          <p>Depende de sorte no sorteio. Você pode esperar anos sem previsão de quando será contemplado.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Taxa de administração</div>
+          <p>Taxas mais altas, com variações que reduzem o poder do seu crédito.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Suporte após a carta</div>
+          <p>Você recebe o crédito e está sozinho. Escolha do imóvel e toda a burocracia são sua responsabilidade.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Gestão do imóvel</div>
+          <p>Não incluído. Você precisa encontrar e gerenciar sua própria locação.</p>
+        </div>
+      </div>
+      <div class="rfc-col good">
+        <div class="rfc-col-title">Consórcio Referência Capital</div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Contemplação acelerada</div>
+          <p>Usamos estratégias de lance e seleção de grupos com alta taxa de contemplação. Maioria dos clientes contemplada nos primeiros meses.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Melhor grupo disponível</div>
+          <p>Selecionamos o grupo com melhores condições do mercado para o seu perfil e objetivo.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Escolha de imóvel especializada</div>
+          <p>Nossa equipe analisa localização, retorno de locação e potencial de valorização antes de recomendar qualquer imóvel.</p>
+        </div>
+        <div class="rfc-item">
+          <div class="rfc-item-label">Gestão completa de locação</div>
+          <p>Cuidamos de tudo — publicação, reservas, check-in, manutenção e repasse mensal. Você não precisa se envolver.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-s" id="form">
+  <div class="form-s-inner">
+    <div class="section-e" style="text-align:center">Cadastro gratuito</div>
+    <h2>Comece agora a construir<br>seu patrimônio</h2>
+    <p>Preencha abaixo para agendar uma consultoria gratuita com um especialista que vai montar o plano ideal para você.</p>
+    <form class="form" id="leadForm">
+      <input class="fi" type="text" name="nome" placeholder="Seu nome completo" required>
+
+      <div class="phone-wrap">
+        <input id="telefone" class="fi" type="tel" name="telefone" placeholder="WhatsApp" required>
+        <div id="telefone-status" style="font-size:12px; margin-top:6px; color:#7a7670;"></div>
+      </div>
+
+      <input class="fi" type="email" name="email" placeholder="Seu e-mail" required>
+
+      <select class="fi" name="pais" required>
+        <option value="">País onde você mora</option>
+        <option>Estados Unidos</option>
+        <option>Portugal</option>
+        <option>Reino Unido</option>
+        <option>França</option>
+        <option>Alemanha</option>
+        <option>Canadá</option>
+        <option>Itália</option>
+        <option>Suíça</option>
+        <option>Irlanda</option>
+        <option>Espanha</option>
+        <option>Outro</option>
+      </select>
+
+      <select class="fi" name="objetivo" required>
+        <option value="">Qual é seu principal objetivo?</option>
+        <option>Gerar renda passiva com aluguel</option>
+        <option>Construir patrimônio para o futuro</option>
+        <option>Ter onde morar quando voltar</option>
+        <option>Aposentadoria imobiliária</option>
+      </select>
+
+      <select class="fi" name="capacidadeInvestimento" required>
+        <option value="">Quanto pode investir mensalmente?</option>
+        <option>Até R$1.000</option>
+        <option>R$1.000 a R$2.000</option>
+        <option>R$2.000 a R$5.000</option>
+        <option>Acima de R$5.000</option>
+      </select>
+
+      <button type="submit" class="btn-f" id="submitBtn" disabled>Quero conhecer a terceira via →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Referência Capital · CRECI-SP · Assessoria Imobiliária para Brasileiros no Exterior</span>
+  <span>Privacidade · Termos</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script>
+  const WEBHOOK_URL = "https://nitro-app.referenciacapital.tech/webhook/leadsLP";
+  const VALIDAR_WHATSAPP_URL = "https://nitro-app.referenciacapital.tech/webhook/validarWhatsApp";
+  const API_KEY = "n8n.uA5GXxCvJrsexY$et9PyrScGy-nitro";
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    return match ? match[2] : "";
+  }
+
+  const telefoneInput = document.querySelector("#telefone");
+  const telefoneStatus = document.getElementById("telefone-status");
+  const submitBtn = document.getElementById("submitBtn");
+
+  const iti = window.intlTelInput(telefoneInput, {
+    initialCountry: "br",
+    preferredCountries: ["br", "us", "pt"],
+    separateDialCode: true,
+    nationalMode: false,
+    autoPlaceholder: "aggressive",
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+  });
+  
+  function aplicarMascaraTelefone() {
+    const countryData = iti.getSelectedCountryData();
+    const iso2 = countryData.iso2;
+    let valor = telefoneInput.value.replace(/\D/g, "");
+
+    if (iso2 === "br") {
+      if (valor.length > 11) valor = valor.slice(0, 11);
+      if (valor.length > 10) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{4,5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 2) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{0,5}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "us") {
+      if (valor.length > 10) valor = valor.slice(0, 10);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "pt") {
+      if (valor.length > 9) valor = valor.slice(0, 9);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, "$1 $2 $3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "$1 $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (valor.length > 12) valor = valor.slice(0, 12);
+    telefoneInput.value = valor.replace(/(\d{3})(?=\d)/g, "$1 ").trim();
+  }
+
+  telefoneInput.addEventListener("input", aplicarMascaraTelefone);
+
+  telefoneInput.addEventListener("countrychange", function () {
+    telefoneInput.value = "";
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("", "#7a7670");
+  });
+  let telefoneValidoWhatsapp = false;
+  let telefoneValidationTimeout;
+
+  function setTelefoneStatus(message, color) {
+    telefoneStatus.textContent = message;
+    telefoneStatus.style.color = color;
+  }
+
+
+  async function validarWhatsApp() {
+    const numeroLimpo = iti.getNumber().replace(/\D/g, "");
+
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+
+    if (!numeroLimpo || numeroLimpo.length < 10) {
+      setTelefoneStatus("Digite um número válido com DDI.", "#ff8a8a");
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
+      setTelefoneStatus("Formato de número inválido.", "#ff8a8a");
+      return;
+    }
+
+    setTelefoneStatus("Validando WhatsApp...", "#c9a84c");
+
+    try {
+      const response = await fetch(`${VALIDAR_WHATSAPP_URL}?telefone=${encodeURIComponent(numeroLimpo)}`, {
+        method: "GET",
+        headers: {
+          "api-key": API_KEY
+        }
+      });
+
+      const data = await response.json();
+      const resultado = Array.isArray(data) ? data[0] : data;
+
+      const whatsappExiste =
+              resultado &&
+              (
+                      resultado.existe === true ||
+                      resultado.existe === "true" ||
+                      resultado.exists === true ||
+                      resultado.exists === "true"
+              );
+
+      if (whatsappExiste) {
+        telefoneValidoWhatsapp = true;
+        submitBtn.disabled = false;
+        setTelefoneStatus("WhatsApp válido.", "#7ed957");
+      } else {
+        telefoneValidoWhatsapp = false;
+        submitBtn.disabled = true;
+        setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      }
+
+    } catch (error) {
+      console.error("Erro ao validar WhatsApp:", error);
+      telefoneValidoWhatsapp = false;
+      submitBtn.disabled = true;
+      setTelefoneStatus("Não foi possível validar o número.", "#ff8a8a");
+    }
+  
+  }
+
+  telefoneInput.addEventListener("input", function () {
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("Digitando...", "#7a7670");
+
+    clearTimeout(telefoneValidationTimeout);
+    telefoneValidationTimeout = setTimeout(() => {
+      validarWhatsApp();
+    }, 800);
+  });
+
+  telefoneInput.addEventListener("blur", function () {
+    clearTimeout(telefoneValidationTimeout);
+    validarWhatsApp();
+  });
+
+  document.getElementById("leadForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    if (!telefoneValidoWhatsapp) {
+      setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      return;
+    }
+
+    const formData = new FormData(this);
+
+    const payload = {
+      nome: formData.get("nome"),
+      telefone: iti.getNumber().replace(/\D/g, ""),
+      email: formData.get("email"),
+      pais: formData.get("pais"),
+      objetivo: formData.get("objetivo"),
+      capacidadeInvestimento: formData.get("capacidadeInvestimento"),
+      utmSource: window.location.href,
+      produto: "Consórcio Brasileiro",
+      _fbc: getCookie("_fbc"),
+      _fbp: getCookie("_fbp"),
+      trafficSource: "Paid",
+      first_traffic_source: "Paid"
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": API_KEY
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        fbq("track", "Lead", {
+          value: 1,
+          currency: "BRL"
+        });
+
+        setTimeout(() => {
+          window.location.href = "https://referenciacapital.com.br/investimento-estrangeiros-obrigado/";
+        }, 500);
+      } else {
+        alert("Erro ao enviar.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro de conexão.");
+    }
+  });
+</script>
+</body>
+</html>
